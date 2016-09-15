@@ -1,18 +1,12 @@
-import React from 'react'
-import { render } from 'react-dom'
-import App from './components/App'
-import data from './data'
-import { getFeeds, getFullPodcast, getEpisode } from './selectors'
+import React from 'react';
+import { render } from 'react-dom';
 
-const state = {
-  selectedPodcast: '01',
-  selectedEpisode: '100'
-}
+import App from './components/App';
+import { Provider } from 'react-redux';
 
-const props = {
-  feeds: { covers: getFeeds( data ) },
-  podcast: getFullPodcast( data, state.selectedPodcast ),
-  player: getEpisode( data, state.selectedPodcast, state.selectedEpisode ),
-}
+import store from './redux/store';
 
-render(<App {...props} />, document.getElementById('podcast-player'))
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>, document.getElementById('podcasts-app'));

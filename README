@@ -1,0 +1,62 @@
+
+= Primeiro dia
+
+* Atualização do node (npm install -g n && n latest)
+* Inicialização do pacote npm (npm init)
+* Instalação do webpack para compilar src em dist; apenas entry (app) e output (path, filename)
+* Criação de um html básico carregando o app.js (partindo do template)
+* Preparar webpack para compilar usando --optimize-minimize
+* Instalação do webpack-dev-server com -d --hot --inline --content-base apontando pra /dist
+* Instalação do Babel com preset es2015 e stage-0 e react
+* Demonstração do hot replacement com babel preset react-hmre
+* Dividir a App em 3 principais componentes COMPLETAMENTE ESTÁTICO E SEM PROPRIEDADE (seguindo as divisórias visuais)
+* Subdividir os 3 componentes em componentes especializados
+* Extraíndo dados para propriedades
+* Repassando propriedades para concentrar TODOS os dados no componente raiz
+* Movendo todas as declarações de propriedades do componente raiz para um objeto principal
+* Movendo todos os dados da aplicação para ser utilizado como propriedade do componente raiz!
+* Definindo PropTypes!
+* Manipulando estado interno de um componente
+
+= Segundo dia
+
+* Definir o estado inicial da store com as colections possíveis e colocar em data.js ( podcasts, episódios )
+* Definir um estado para a ui ( podcast selecionado, episódio selecionado )
+* Compor as propriedades de App a partir dos dados da store utilizando funções puras
+* Mover seletores pra um arquivo separado (será útil depois)
+* Criar store com reducer vazio em redux/store
+* Instalar DevToolsExtension
+* Adicionar mais exemplos de podcasts manualmente
+* Adicionar ao reducer principal a capacidade de receber SELECT_PODCAST
+* Testar no DevToolsEXtension o recebientodo SELECT_PODCAST
+* Instalando o Provider e criando AppContainer
+* Mover as props de Apps correspondente a MyFeeds para um container próprio
+* Adicionar um dispatcher no onclick de qualquer imagem de MyFeeds para lançar uma action estática
+* Refatorar as propriedades de MyFeeds para guardar o id dos podcasts
+* Melhorar a função do click para abrir o podcas correto
+* Demonstrar o slider do DevTools
+* Demonstrar o import/export do DevTools
+* Criar um container para ThePodcast
+* Criar um container para Player
+* Refatorar ThePodcast para guardar os dados completos dos episódios
+* Adicionando dispatcher para abrir episódio ( juntamente com o respectivo condicional no reducer )
+* Refatorando reducers ( Extraindo reducer ui e jogando o root reducer para index)
+* Dividindo o reducer ui em dois!
+* Refatorando com combineReducers
+* Refatorando com generator de Reducer ( makeSeletorReducer )
+* Introduzindo actionCreators e constantes para tipos de ação
+* Utilizando bindActionCreators
+* Retoques finais, movendo mapStateToProps e mapDispatchToProps pra funções de flecha
+
+= Terceiro dia
+
+* Fazendo requisição para http://rss2json.com/api.json?rss_url=https://jovemnerd.com.br/feed-nerdcast/ usando o axios
+* Criando ducks para podcasts (LOAD_PODCAST)
+* Instalando loadPodcast no container MyFeeds
+* Criando a função submit em MyFeeds
+* Criando um reducer para consumir LOAD_PODCAST popular episódios
+* Mapear podcasts e episódios na action! (mapPodcast e mapEpisodes) e adaptando os reducers respectivos
+--- FEATURES CONCLUÍDAS
+* Adicionando Thunk
+* Criando validador de requisições e adicionando tratamento de error como segundo argumento do then
+* Criando reselectors

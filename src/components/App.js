@@ -1,21 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-import Podcast from './Podcast'
-import Feeds from './Feeds'
-import Player from './Player'
-import Stage from './Stage'
+import Stage from './Stage';
+import MyFeedsContainer from '../containers/MyFeedsContainer';
+import ThePodcastContainer from '../containers/ThePodcastContainer';
 
-const App = ({ feeds, podcast, player }) => (
+import PlayerContainer from '../containers/PlayerContainer';
+
+const App = () => (
   <section id="podcasts-app">
+    <Stage>
+      <MyFeedsContainer />
 
-    <Stage> 
-      <Feeds {...feeds} />
-      <Podcast {...podcast} />
+      <ThePodcastContainer />
     </Stage>
 
-    <Player {...player} />
-
+    <PlayerContainer />
   </section>
-)
+);
 
-export default App
+export default App;

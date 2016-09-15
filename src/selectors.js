@@ -1,21 +1,46 @@
-const getPodcast = ( data, podcastId ) => (
-  data.podcasts.find( podcast => podcast.id === podcastId )
-)
+import { createSelector } from 'reselect';
 
-const getEpisodes = ( data, podcastId ) => (
-  data.episodes.filter( episode => episode.podcastId === podcastId )
-)
+export const getPodcasts = s => s.podcasts;
 
-const getFeeds = data => data.podcasts.map( podcast => podcast.cover )
+export const getEpisodes = s => s.episodes;
+
+export const getPodcastId = (_, { podcastId }) => podcastId;
+
+export const getEpisodeId = (_, { episodeId}) => episodeId;
+
+export const getSelectedPodcastId = s => s.ui.podcastSelected;
+
+export const getSelectedEpisodeId = s => s.ui.episodeSelected;
 
 
-const getEpisode = ( data, podcastId, episodeId ) => (
-  data.episodes.find( episode => episode.id === episodeId && episode.podcastId === podcastId )
-)
+export const find = (all, id) => all.find( one => one.id === id );
 
-const getFullPodcast = ( data, podcastId ) => ({
-  ...getPodcast( data, podcastId ),
-  episodes: getEpisodes( data, podcastId )
-})
+export const findIndex = (all, one) => all.indexOf( one )
 
-export { getFeeds, getEpisode, getFullPodcast }
+export const filterBy = field => (all, value) => all.filter( one => one[field] === value)
+
+export const findEpisode = (episodes, podcastId, episodeId) =>
+  episodes.find( e => e.id === episodeId && e.podcastId === podcastId )
+
+export const mountFullPodcast = (podcast, episodes) => ({ ...podcast, episodes })
+
+
+export const getPodcastById = createSelector([ getPodcasts, getPodcastId ], find);
+
+export const getPodcastIndexById = createSelector([ getPodcasts, getPodcastById ], findIndex);
+
+export const getSelectedPodcast = createSelector([ getPodcasts, getSelectedPodcastId ], find);
+
+export const getSelectedIndexPodcast = createSelector([ getPodcasts, getSelectedPodcast ], findIndex)
+
+export const getEpisodesByPodcastId = createSelector([ getEpisodes, getPodcastId ], filterBy('podcastId'));
+
+export const getEpisodesBySelectedPodcast = createSelector([ getEpisodes, getSelectedPodcastId ], filterBy('podcastId'))
+
+export const getFullPodcastById = createSelector([ getPodcastById, getEpisodesByPodcastId ], mountFullPodcast);
+
+export const getSelectedFullPodcast = createSelector([ getSelectedPodcast, getEpisodesBySelectedPodcast ], mountFullPodcast)
+
+export const getEpisodeByIds = createSelector([ getEpisodes, getPodcastId, getEpisodeId ], findEpisode);
+
+export const getSelectedEpisode = createSelector([ getEpisodes, getSelectedPodcastId, getSelectedEpisodeId], findEpisode)
