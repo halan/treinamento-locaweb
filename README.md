@@ -44,3 +44,13 @@ Tendo o `n` instalado e pronto, basta rodar: `n latest`.
   - `episodes` deve ter `id` e `podcastId`
 - Define um objeto simples contendo o id do podcast selecionado e o id do episódio selecionado
 - Dado o episódio e o podcast selecionado, e as collections definidas em `data.js` é criado funções simples para selecionar os dados corretos
+
+## Material extra :beers::ring:
+
+- https://github.com/xgrommx/awesome-redux
+- https://github.com/dustinspecker/awesome-babel
+- https://github.com/d3viant0ne/awesome-webpack
+- https://github.com/enaqx/awesome-react
+- https://github.com/stoeffel/awesome-fp-js
+- http://es6-features.org/
+
